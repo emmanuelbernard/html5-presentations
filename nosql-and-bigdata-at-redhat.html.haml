@@ -22,7 +22,7 @@ layout: reveal
     %li 
       Emmanuel Bernard 
       %ul
-        %li Hacker, Red Hat, Inc.
+        %li Hacker too, Red Hat, Inc.
 
 %section
   %h2 Middleware is plumbing
@@ -69,7 +69,7 @@ layout: reveal
     - What is NoSQL?
     - Landscape of data storage
     - The JBoss data technology
-    - Exploring 5 use cases
+    - Exploring 4 use cases
 
 %section
   :markdown
@@ -143,40 +143,67 @@ layout: reveal
   :markdown
     ## The (No)SQL landscape
 
-    TODO: use diagram for:
+    Like New Zealand
 
-    - RDBMSs
-    - Column oriented DB
-
-    __For Emmanuel__
+      - many different families
+      - each product has specific pros and cons
 
 %section 
   :markdown
-    ## The (No)SQL landscape
+    ## Relational DBMS
 
-    TODO: use diagram for:
+    OracleDB, PostgreSQL, MySQL, SQLServer, H2
 
-    - key / value
-    - document oriented DB
+  %img.diagram{:src=>'/assets/nosql-and-bigdata-at-redhat/rdbms.png', :width=>'500'}
 
-    __For Emmanuel__
 
 %section 
   :markdown
-    ## The (No)SQL landscape
+    ## key / value and data grids
 
-    TODO: use diagram for:
+    Infinispan, Redis, Riak, Voldemort
 
-    - GraphDB
-    - Hadoop ????
+  %img.diagram{:src=>'/assets/nosql-and-bigdata-at-redhat/key-value.png', :width=>'500'}
 
-    __For Emmanuel__
+%section 
+  :markdown
+    ## Document oriented datastores
+
+    MongoDB, CouchDB
+
+  %img.diagram{:src=>'/assets/nosql-and-bigdata-at-redhat/document.png', :width=>'250'}
 
 %section
   :markdown
-    ## JBoss data tech at a glance
+    ## Graph oriented DB
 
-    __TODO: put a diagram here__
+    Neo4j
+
+  %img.diagram{:src=>'/assets/nosql-and-bigdata-at-redhat/graph.png', :width=>'500'}
+
+%section 
+  :markdown
+    ## (Mixed or) Column oriented DB
+
+    Cassandra, HBase, BigTable
+
+    TODO: improve
+
+  %img.diagram{:src=>'/assets/nosql-and-bigdata-at-redhat/column-store.png', :width=>'500'}
+
+%section 
+  :markdown
+    ## Hadoop
+
+    Mainly analytics and batch processing
+
+    TODO: improve
+
+%section
+  %h2 JBoss data tech at a glance
+
+  %img.diagram{ :src=>'/assets/nosql-and-bigdata-at-redhat/tech-overview.png',
+                :width=>'500' }
 
 %section
   :markdown
@@ -224,6 +251,8 @@ layout: reveal
       - Java EE
       - portable extentions
     - Offer integration with data technologies
+
+    - TODO improve?
 
 %section
   :markdown
@@ -293,7 +322,7 @@ layout: reveal
     - Multiple connectors
       - JDBC
       - Web Services
-      - CSV
+      - CSV, XML
     <img height="300" width="400" style="position:relative;left:250px;top:-220px;" 
     src="images/nosql-and-bigdata-at-redhat/teiid-schema.png">
 
@@ -302,10 +331,9 @@ layout: reveal
     ## Third party technologies
 
     - JBoss does not live in isolation
+      - JClouds
 
-    - JClouds
-
-              Integrate with other techs
+    -TODO; improve
 
 %section
   :markdown
@@ -330,6 +358,82 @@ layout: reveal
     - Infinispan configured to write-through to Cassandra
       - Could be write-behind as well
       - Cassandra queried directly for OLAP/data mining workloads
+
+%section
+  :markdown
+    ## Storing domain objects in NoSQL
+
+    __The Problem:__
+
+    - want to explore NoSQL and try MongoDB first
+    - programming paradigm change is costly
+    - need advanced queries too
+
+%section
+  :markdown
+    ## Storing domain objects in NoSQL
+
+    __The solution:__
+
+    - Use CDI as the component model
+    - Use Hibernate OGM as the JPA implementor
+    - Use Hibernate Search to index and query content
+
+%section
+  %h2 An entity in MongoDB
+  %pre.prettyprint
+    %code.language-java
+      :escaped
+          @Entity @Indexed 
+        class User {
+          @Id @GeneratedValue String uuid;
+          @Field String firstname;
+          @Field String lastname;
+          @ElementCollection @IndexedEmbedded
+          Set<Login> services;
+        }
+  %pre.prettyprint
+    %code.language-javascript
+      :escaped
+          {
+          "_id": "550e8400-e29b-41d4-a716-446655440000",
+          "firstname": "Emmanuel",
+          "lastname": "Bernard",
+          "nicknames": [
+            {
+              "username": "emmanuelbernard",
+              "service": "GitHub"
+            },
+            {
+              "username": "emmanuelbernard",
+              "service": "Twitter"
+            }
+          ]
+        }
+
+%section
+  %h2 An query with Hibernate Search
+  %pre.prettyprint
+    %code.language-java
+      :escaped
+          Query query = builder
+        .bool()
+          .should(
+            builder.keyword()
+              .fuzzy().onField("firstname")
+              .matching("Emanuel")
+              .createQuery()
+          )
+          .must(
+            builder.spatial()
+              .onCoordinates( "location" )
+              .within( 51, Unit.KM )
+                .ofCoordinates( coordinates )
+              .createQuery()
+          )
+          .createQuery();
+
+        List results = fullTextSession.createFullTextQuery( query, User.class ).list();
 
 %section
   :markdown
@@ -358,64 +462,34 @@ layout: reveal
 
 %section
   :markdown
-    ## End of presentation
+    ## Accessing disparate sources of data
 
-    - this is where the presentation end
-    - and Pete presentation start
+    __The Problem:__
 
-%section
-  %h2 Test of code
-  %pre.prettyprint
-    %code.language-java
-      :escaped
-          class MyClass {
-          private String test;
-        }
-
+    - Data spread across several RDBMSs
+      - historical silo development
 
 %section
-  %h2 Architecture
-  %img.diagram(src="#{site.base_url}/images/ticketmonster_architecture.png" width="800")
+  :markdown
+    ## Accessing disparate sources of data
+
+    __The solution:__
+
+    - Use data virtualization (Teiid) to unify data
+    - Use Hibernate ORM to access this virtual database
 
 %section
-  %h2 Tools Overview
-  %ul
-    %li JBDS 5
-    %li Forge
-
-%section
-  %h2 Demo
-
-%section 
-  %h2 End-user use cases
-  %img.diagram(src="#{site.base_url}/images/user_use_cases.png" width="800")
-
-%section 
-  %h2 Administration use cases
-  %img.diagram(src="#{site.base_url}/images/admin_use_cases.png" width="800")
-
-%section
-  %h2 HTML5 Architecture
-  %img.diagram(src="#{site.base_url}/images/ticketmonster_html5_architecture.png" width="800")
-
-%section
-  %h2 Demo deep dive
-
-%section
-  %h2.bottom.red Can I get support?
-
-%section
-  %img.bottom(src="#{site.base_url}/images/as7_to_eap.png" width="800")
+  %h2 Accessing disparate sources of data
+  %img.diagram{:src=>'/assets/nosql-and-bigdata-at-redhat/teiid-usecase.png',
+      :width=>'350' }
 
 %section
   %img.diagram(src="#{site.base_url}/images/subscriptions.png" width="800")
 
 %section
-  %h2 Q&A
-  %ul
-    %li
-      %a(href="http://jboss.org/developer") http://jboss.org/developer
-    %li
-      %a(href="http://jboss.org/jdf") http://jboss.org/jdf
-    %li
-      %a(href="https://twitter.com/#!/jbossdeveloper") @jbossdeveloper
+  :markdown
+    ## End of our guided journey
+
+    Q&A
+
+    <http://jboss.com>
