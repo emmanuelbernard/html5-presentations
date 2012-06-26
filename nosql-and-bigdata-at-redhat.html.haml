@@ -49,7 +49,7 @@ layout: reveal
 %section
   :markdown
     ## Manik Surtani
-
+    
     - Data grids
       - Founder and Project Lead, Infinispan
       - JBoss Data Grid Platform Architect
@@ -131,12 +131,7 @@ layout: reveal
     - Eventual
       - Many NoSQL engines
       - Some data grids
-
-%section
-  :markdown
-    ## Brewer's CAP theorem
-
-    (explain)
+    - Eric Brewer's CAP theorem
 
 %section 
   :markdown
@@ -146,6 +141,7 @@ layout: reveal
 
       - many different families
       - each product has specific pros and cons
+      - (TODO: add image)
 
 %section 
   :markdown
@@ -186,8 +182,6 @@ layout: reveal
 
     Cassandra, HBase, BigTable
 
-    TODO: improve
-
   %img.diagram{:src=>'/assets/nosql-and-bigdata-at-redhat/google-bigtable.jpg', :width=>'700'}
 
 %section 
@@ -198,6 +192,7 @@ layout: reveal
 
     - huge ecosystem
     - many different tools
+    - TODO: Image?
 
 %section
   %h2 JBoss data tech at a glance
@@ -215,7 +210,7 @@ layout: reveal
     - Defines object state
       - ORM does the SQL action
     - Optimization goodies
-      - 1st and 2nd levle cache
+      - 1st and 2nd level cache
       - lower lock period
 
 %section
@@ -225,7 +220,7 @@ layout: reveal
     - JPA for NoSQL
       - Infinispan, EHCache, MongoDB
       - Cassandra, Neo4J etc coming
-      - queries too
+      - JP-QL querying too
 
     - Familiar API
     - Declarative denormalization
@@ -314,7 +309,7 @@ layout: reveal
 %section
   :markdown
     ## Teiid
-
+    - TODO: What is the product name?
     - Data virtualization
       - one logical relational view
       - several physical datasources
@@ -333,7 +328,14 @@ layout: reveal
     JBoss does not live in isolation
     
     - JClouds
-    - ...
+    - Cassandra
+    - HBase
+    - Lucene
+
+%section
+  %h2 Changing gears ... 
+  %img.diagram{ :src=>'/assets/nosql-and-bigdata-at-redhat/changing_gears.jpeg',
+                :width=>'500' }
 
 %section
   :markdown
@@ -487,9 +489,6 @@ layout: reveal
   %img.diagram(src="#{site.base_url}/images/subscriptions.png" width="800")
 
 %section
-  :markdown
-    ## End of our guided journey
+  %img.diagram(src="/assets/nosql-and-bigdata-at-redhat/thatsallfolks.jpeg")
 
-    Q&A
 
-    <http://jboss.com>
