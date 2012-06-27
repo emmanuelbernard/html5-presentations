@@ -37,14 +37,15 @@ layout: reveal
     ## Emmanuel Bernard
 
     - Serial OSS entrepreneur
-      - Hibernate ORM|Search|OGM|Validator
+      - Hibernate {ORM|Search|OGM|Validator}
       - Ceylon
     - Standardizer
     - Podcaster
       - <http://asylum.jboss.org>
       - <http://lescastcodeurs.com>
-
-    - The rest at [@emmanuelbernard](http://twitter/emmanuelbernard) or <http://emmanuelbernard.com>
+    - Contact
+      - [@emmanuelbernard](http://twitter/emmanuelbernard) on Twitter
+      - <http://emmanuelbernard.com>
 
 %section
   :markdown
@@ -57,9 +58,9 @@ layout: reveal
       - Spec Lead, JSR 347
       - Expert group member, JSR 107
     - Contact
-      - __@maniksurtani__ on Twitter
-      - http://blog.infinispan.org
-      - http://manik.surtani.org
+      - [@maniksurtani](http://twitter/maniksurtani) on Twitter
+      - <http://blog.infinispan.org>
+      - <http://manik.surtani.org>
 
 %section
   :markdown
@@ -69,6 +70,7 @@ layout: reveal
     - Landscape of data storage
     - The JBoss data technology
     - Exploring 4 use cases
+  %img.diagram{:src=>'/assets/nosql-and-bigdata-at-redhat/writing-in-agenda.gif', :width=>'500', :style=>'position: absolute; left: 600px; top: 10px;'}
 
 %section
   :markdown
@@ -78,6 +80,7 @@ layout: reveal
     - RDBMS normal forms
     - Based on relational set theory
       - Strong mathematical background
+  %img.diagram{:src=>'/assets/nosql-and-bigdata-at-redhat/hdd.png', :width=>'500', :style=>'position: absolute; left: 600px; top: 10px; border:0; background: transparent; -webkit-box-shadow:0 0 0px; box-shadow: 0 0 0px;'}
 
 %section
   :markdown
@@ -154,7 +157,7 @@ layout: reveal
 
 %section 
   :markdown
-    ## key / value and data grids
+    ## Key/Value stores and data grids
 
     Infinispan, Redis, Riak, Voldemort
 
@@ -162,7 +165,7 @@ layout: reveal
 
 %section 
   :markdown
-    ## Document oriented datastores
+    ## Document-oriented data stores
 
     MongoDB, CouchDB
 
@@ -170,7 +173,7 @@ layout: reveal
 
 %section
   :markdown
-    ## Graph oriented DB
+    ## Graph-oriented databases
 
     Neo4j
 
@@ -211,7 +214,7 @@ layout: reveal
       - ORM does the SQL action
     - Optimization goodies
       - 1st and 2nd level cache
-      - lower lock period
+      - Lower lock period
 
 %section
   :markdown
@@ -219,7 +222,7 @@ layout: reveal
 
     - JPA for NoSQL
       - Infinispan, EHCache, MongoDB
-      - Cassandra, Neo4J etc coming
+      - Cassandra, Neo4J and others coming soon
       - JP-QL querying too
 
     - Familiar API
@@ -231,20 +234,20 @@ layout: reveal
     ## Hibernate Search
 
     - Full-text search engine
-      - fuzzy, ngram, phonetic search
+      - Fuzzy, n-gram, phonetic search
       - Object-oriented level
-      - annotation driven
+      - Annotation driven
     - Uses Lucene underneath
-      - optionally store index in Infinispan
+      - Optionally stores indexes in Infinispan
     - Optimizes Lucene access patterns
 
 %section
   :markdown
-    ## CDI
+    ## Contexts and Dependency Injection (CDI)
 
     - Programming model
       - Java EE
-      - **portable extentions**
+      - Portable extentions
     - Offer integration with data technologies
 
     - DeltaSpike and JBoss Developer Framework
@@ -258,7 +261,7 @@ layout: reveal
       - Full XA support
       - Eventually consistent mode on the roadmap
     - Often used in front of a RDBMS
-      - But also used as a store of record
+      - But also used as a system of record
 
 %section
   :markdown
@@ -278,21 +281,21 @@ layout: reveal
 
     Unified platform for
 
-    - rules
-    - workflow
-    - event processing / temporal reasoning
+    - Rules
+    - Workflow
+    - Event processing and temporal reasoning
 
 %section
   :markdown
     ## ModeShape
 
-    - JCR view of your information
-      - file systems
-      - database
-      - other repositories
+    - Java Content Repository (JCR) abstraction over data stored in:
+      - File systems
+      - Relational database
+      - Other repositories
     - Federates multiple backends
     - Can store data in Infinispan
-      - distribution and scalability
+      - Distribution and scalability
 
 %section
   :markdown
@@ -304,16 +307,16 @@ layout: reveal
       - WS-* about transaction
       - Android ?!
 
-    - In container and standalone
+    - For both Java EE containers (like JBoss AS) and standalone use
 
 %section
   :markdown
     ## Teiid
     - TODO: What is the product name?
     - Data virtualization
-      - one logical relational view
-      - several physical datasources
-      - read and write
+      - One logical relational view
+      - Several physical datasources
+      - Read and write
     - Multiple connectors
       - JDBC
       - Web Services
@@ -367,9 +370,9 @@ layout: reveal
 
     __The Problem:__
 
-    - want to explore NoSQL and try MongoDB first
-    - programming paradigm change is costly
-    - need advanced queries too
+    - Want to explore NoSQL and try MongoDB first
+    - Programming paradigm change is costly
+    - Need advanced queries too
 
 %section
   :markdown
@@ -469,7 +472,7 @@ layout: reveal
     __The Problem:__
 
     - Data spread across several RDBMSs
-      - historical silo development
+      - Historical silo development
 
 %section
   :markdown
