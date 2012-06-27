@@ -92,6 +92,7 @@ layout: reveal
         - pushed further by cloud
       - Relational model never sat well with OOP anyway
         - Hence the (very useful) _hack_ that we call ORM
+  %img.diagram{:src=>'/assets/nosql-and-bigdata-at-redhat/RobotEvolution.gif', :width=>'400'}
 
 %section
   :markdown
@@ -100,7 +101,9 @@ layout: reveal
     - The relational model was not designed to be distributed
     - Maintaining coherence and consistency is very hard
     - You can only go so far scaling vertically
-      - At some point you need to scale horizontally    
+      - At some point you need to scale horizontally  
+
+  %img.diagram{:src=>'/assets/nosql-and-bigdata-at-redhat/difficult.jpeg', :width=>'400'}  
 
 %section
   :markdown
@@ -111,6 +114,7 @@ layout: reveal
     - Sharding
       - Pushes a lot of complexity into the application
       - Cross-shard queries become problematic
+  %img.diagram{:src=>'/assets/nosql-and-bigdata-at-redhat/wheelchair.jpeg', :width=>'400'}
 
 %section
   :markdown
@@ -123,6 +127,8 @@ layout: reveal
       - If distributed
     - Flexible (soft) schema
       - Often denormalized
+  %img.diagram{:src=>'/assets/nosql-and-bigdata-at-redhat/nosql.png',
+               :style=>'position:absolute; top: 100px; left: 600px;'}
 
 %section
   :markdown
@@ -135,6 +141,9 @@ layout: reveal
       - Many NoSQL engines
       - Some data grids
     - Eric Brewer's CAP theorem
+  %img.diagram{:src=>'/assets/nosql-and-bigdata-at-redhat/consistency.png',
+               :style=>'position:absolute; top: 100px; left: 600px;', :width=>'300'}
+
 
 %section 
   :markdown
@@ -338,6 +347,7 @@ layout: reveal
 %section
   %h2 Changing gears ... 
   %img.diagram{ :src=>'/assets/nosql-and-bigdata-at-redhat/changing_gears.jpeg',
+                :style=>'border:0; background: transparent; -webkit-box-shadow:0 0 0px; box-shadow: 0 0 0px;',
                 :width=>'500' }
 
 %section
