@@ -152,8 +152,11 @@ layout: reveal
     Like New Zealand
 
       - many different families
-      - each product has specific pros and cons
-      - (TODO: add image)
+      - each product has pros
+      - ... and heavy cons
+
+  %img.diagram{:src=>'/assets/nosql-and-bigdata-at-redhat/the-seasons.jpeg',
+               :style=>'position:absolute; top: 100px; left: 600px;', :width=>'300'}
 
 %section 
   :markdown
@@ -161,7 +164,7 @@ layout: reveal
 
     OracleDB, PostgreSQL, MySQL, SQLServer, H2
 
-  %img.diagram{:src=>'/assets/nosql-and-bigdata-at-redhat/rdbms.png', :width=>'500'}
+  %img.diagram{:src=>'/assets/nosql-and-bigdata-at-redhat/rdbms.png', :width=>'450'}
 
 
 %section 
@@ -204,7 +207,9 @@ layout: reveal
 
     - huge ecosystem
     - many different tools
-    - TODO: Image?
+    
+  %img.diagram{:src=>'/assets/nosql-and-bigdata-at-redhat/big-data.jpeg',
+               :style=>'position:absolute; top: 150px; left: 600px;', :width=>'500'}
 
 %section
   %h2 JBoss data tech at a glance
@@ -320,8 +325,8 @@ layout: reveal
 
 %section
   :markdown
-    ## Teiid
-    - TODO: What is the product name?
+    ## Teiid - JBoss Data Services
+    
     - Data virtualization
       - One logical relational view
       - Several physical datasources
@@ -331,7 +336,7 @@ layout: reveal
       - Web Services
       - CSV, XML
     <img height="300" width="400" style="position:relative;left:250px;top:-220px;" 
-    src="images/nosql-and-bigdata-at-redhat/teiid-schema.png">
+    src="/assets/nosql-and-bigdata-at-redhat/teiid-schema.png">
 
 %section
   :markdown
